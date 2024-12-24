@@ -7,7 +7,13 @@ export class ExpensesController {
 
   @Post()
   create(
-    @Body() data: { description: string; amount: number; userId: string },
+    @Body()
+    data: {
+      title: string;
+      amount: number;
+      category: string;
+      userId: string;
+    },
   ) {
     return this.expensesService.create(data);
   }
