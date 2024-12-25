@@ -1,3 +1,4 @@
+import { LoginDto, RegisterDto } from './dto/auth.dto';
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from 'prisma/prisma.service';
@@ -11,7 +12,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async login(credentials: { email: string; password: string }) {
+  async login(credentials: LoginDto) {
     const user = await this.prisma.user.findUnique({
       where: { email: credentials.email },
     });
@@ -22,12 +23,7 @@ export class AuthService {
     throw new UnauthorizedException('Invalid credentials');
   }
 
-  async register(user: {
-    email: string;
-    password: string;
-    name: string;
-    username: string;
-  }) {
+  async register(user: RegisterDto) {
     const existingUser = await this.prisma.user.findUnique({
       where: { email: user.email },
     });
