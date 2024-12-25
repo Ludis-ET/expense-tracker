@@ -1,65 +1,58 @@
-# Expense Tracker
+# Expense Tracker Backend
 
-This is a full-stack expense tracker application that helps you manage your expenses efficiently. The server side of the application is built with Node.js and Express, while the client side is built with React.
+This project is the backend of an Expense Tracker application built with NestJS and MySQL using Prisma as the ORM.
 
-## Project Description
+## Description
 
-The Expense Tracker application allows users to:
-- Add, edit, and delete expenses
-- Categorize expenses
-- View expense summaries and reports
-- Manage user authentication and authorization
+The Expense Tracker backend provides a robust and scalable API for managing expenses. It allows users to create, read, update, and delete expense records. The backend is built with NestJS, a progressive Node.js framework, and uses Prisma to interact with a MySQL database.
+
+## Prerequisites
+
+- Node.js (v14 or higher)
+- npm (v6 or higher)
+- MySQL database
 
 ## Installation
 
-To install and run this project, follow these steps:
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/yourusername/expense-tracker-backend.git
+    cd expense-tracker-backend
+    ```
 
-### Prerequisites
+2. Install the dependencies:
+    ```bash
+    npm install
+    ```
 
-Make sure you have the following installed on your system:
-- Node.js (v14 or higher)
-- npm (v6 or higher)
-- MongoDB (for the database)
+3. Set up the environment variables:
+    Create a `.env` file in the root directory and add the following:
+    ```env
+    DATABASE_URL="mysql://USER:PASSWORD@HOST:PORT/DATABASE"
+    ```
 
-### Clone the Repository
+4. Run the Prisma migrations to set up the database schema:
+    ```bash
+    npx prisma migrate dev
+    ```
 
-```bash
-git clone https://github.com/your-username/expense-tracker.git
-cd expense-tracker/server
-```
+## Running the Application
 
-### Install Dependencies
+1. Start the NestJS server:
+    ```bash
+    npm run start:dev
+    ```
 
-```bash
-npm install
-```
+2. The server will be running at `http://localhost:3000`.
 
-### Set Up Environment Variables
+## API Endpoints
 
-Create a `.env` file in the `server` directory and add the following environment variables:
-
-```
-PORT=5000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-```
-
-### Run the Server
-
-```bash
-npm start
-```
-
-The server should now be running on `http://localhost:5000`.
-
-### Run the Client
-
-Navigate to the client directory and follow the instructions in the client's README file to install and run the client side of the application.
-
-## Contributing
-
-Contributions are welcome! Please read the [contributing guidelines](CONTRIBUTING.md) for more information.
+- `GET /expenses` - Retrieve all expenses
+- `POST /expenses` - Create a new expense
+- `GET /expenses/:id` - Retrieve a specific expense by ID
+- `PUT /expenses/:id` - Update a specific expense by ID
+- `DELETE /expenses/:id` - Delete a specific expense by ID
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
