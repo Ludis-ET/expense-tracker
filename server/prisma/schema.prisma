@@ -8,11 +8,13 @@ generator client {
 }
 
 model User {
-  id       String   @id @default(auto()) @map("_id") @db.ObjectId
-  email    String   @unique
-  password String
-  role     String   @default("User")
-  expenses Expense[]
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  email     String    @unique
+  password  String
+  name      String
+  username  String    @unique
+  role      String    @default("USER")
+  expenses  Expense[] @relation("UserExpenses")
 }
 
 model Expense {
@@ -22,5 +24,5 @@ model Expense {
   date      DateTime @default(now())
   category  String
   userId    String   @db.ObjectId
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], name: "UserExpenses")
 }
