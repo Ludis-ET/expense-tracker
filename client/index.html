@@ -1,13 +1,51 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <div id="app">
+      <div id="message" class="hidden"></div>
+      <!-- Login Form -->
+      <div id="login-form" class="hidden">
+        <h1>Login</h1>
+        <input type="email" id="login-email" placeholder="Email" />
+        <input type="password" id="login-password" placeholder="Password" />
+        <button id="login-btn">Login</button>
+        <p>
+          Don't have an account?
+          <span id="switch-to-register" class="link">Register here</span>
+        </p>
+      </div>
+
+      <div id="register-form" class="hidden">
+        <h1>Register</h1>
+        <input type="text" id="register-name" placeholder="Name" />
+        <input type="text" id="register-username" placeholder="Username" />
+        <input type="email" id="register-email" placeholder="Email" />
+        <input type="password" id="register-password" placeholder="Password" />
+        <button id="register-btn">Register</button>
+        <p>
+          Already have an account?
+          <span id="switch-to-login" class="link">Login here</span>
+        </p>
+      </div>
+
+      <!-- Expenses Section -->
+      <div id="expenses-section" class="hidden">
+        <h1>Expenses</h1>
+        <ul id="expenses-list"></ul>
+        <h2>Add Expense</h2>
+        <input type="text" id="expense-title" placeholder="Title" />
+        <input type="number" id="expense-amount" placeholder="Amount" />
+        <input type="text" id="expense-category" placeholder="Category" />
+        <button id="add-expense-btn">Add Expense</button>
+        <button id="logout-btn">Logout</button>
+      </div>
+    </div>
+    <script src="./dist/app.js" defer></script>
   </body>
 </html>
