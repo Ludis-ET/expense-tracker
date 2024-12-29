@@ -18,6 +18,9 @@ const addExpenseBtn = document.getElementById(
 const expenseList = document.getElementById("expenseList") as HTMLUListElement;
 const totalAmount = document.getElementById("totalAmount") as HTMLDivElement;
 const logoutBtn = document.getElementById("logoutBtn") as HTMLButtonElement;
+const expenseCategory = document.getElementById(
+  "expenseCategory"
+) as HTMLSelectElement;
 
 let expenses: {
   id: string;
@@ -76,7 +79,7 @@ function renderCategoryChart() {
   const ctx = document.getElementById("expenseChart") as HTMLCanvasElement;
   if (ctx) {
     new Chart(ctx, {
-      type: "pie",
+      type: "bar", // Changed to bar chart
       data: {
         labels: chartLabels,
         datasets: [
@@ -187,9 +190,7 @@ logoutBtn.addEventListener("click", () => {
 addExpenseBtn.addEventListener("click", () => {
   const title = expenseNameInput.value.trim();
   const amount = parseFloat(expenseAmountInput.value.trim());
-  const category = (
-    document.getElementById("expenseCategory") as HTMLSelectElement
-  ).value;
+  const category = expenseCategory.value;
 
   if (title && !isNaN(amount) && amount > 0) {
     addExpense(title, amount, category);

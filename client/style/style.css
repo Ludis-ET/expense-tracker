@@ -1,16 +1,24 @@
-/* General Styles */
+:root {
+  --primary-gradient: #74ebd5;
+  --header-gradient: #9face6;
+  --primary-bg: #fff;
+  --primary-color: #333;
+  --button-bg: linear-gradient(135deg, #74ebd5, #9face6);
+  --button-hover-bg: #6fc7d1;
+}
+
 body {
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-  color: #333;
+  background: var(--primary-gradient);
+  color: var(--primary-color);
 }
 
 header {
-  background: linear-gradient(135deg, #ff6f61, #d2691e);
+  background: var(--header-gradient);
   padding: 20px;
-  color: white;
+  color: var(--button-color);
   text-align: center;
   font-size: 28px;
   font-weight: bold;
@@ -22,13 +30,12 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  flex-wrap: wrap;
   max-width: 1200px;
   margin: 20px auto;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  background-color: var(--primary-bg);
 }
 
 .left-section,
@@ -37,49 +44,48 @@ header {
   min-width: 450px;
 }
 
-.left-section {
-  padding-right: 20px;
-}
-
 canvas {
   width: 100% !important;
   height: 300px !important;
-  background-color: white;
+  background-color: var(--primary-bg);
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.right-section {
-  display: flex;
-  flex-direction: column;
-  padding-left: 20px;
+.expense-form-container {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: var(--primary-bg);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
-/* Form Styles */
 .expense-form input,
 .expense-form button,
 .expense-form select {
-  width: 100%;
+  width: 90%;
   padding: 15px;
   margin-bottom: 10px;
   border-radius: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid #333;
   font-size: 16px;
 }
 
 .expense-form button {
-  background: linear-gradient(135deg, #ff6f61, #d2691e);
-  color: white;
+  background: var(--button-bg);
+  color: #333;
   cursor: pointer;
+  border:none;
   transition: background-color 0.3s;
 }
 
 .expense-form button:hover {
-  background-color: #6f4f28;
+  background: var(--button-hover-bg);
 }
 
 .expense-form select {
-  background-color: #fff8e1;
+  background-color: var(--input-bg);
   cursor: pointer;
 }
 
@@ -87,23 +93,18 @@ canvas {
   margin-right: 8px;
 }
 
-.total {
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
-  color: #6f4f28;
-  margin-top: 20px;
-}
-
-/* Expense List Styles */
 .expense-list {
   list-style-type: none;
   padding: 0;
   margin-top: 30px;
+  max-height: 300px;
+  overflow-y: auto;
+  width:80%;
+  margin-left:10%;
 }
 
 .expense-item {
-  background-color: #f7f7f7;
+  background-color: var(--secondary-bg);
   padding: 15px;
   margin-bottom: 15px;
   border-radius: 8px;
@@ -125,7 +126,7 @@ canvas {
 
 .expense-item button {
   background-color: #ff5733;
-  color: white;
+  color: var(--button-color);
   border: none;
   padding: 10px 15px;
   border-radius: 8px;
@@ -134,30 +135,34 @@ canvas {
 }
 
 .expense-item button:hover {
-  background-color: #ff6f61;
+  background-color: var(--button-bg);
 }
 
-/* Logout Button Styles */
-.logout-btn {
+.total {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--total-color);
   margin-top: 20px;
-  padding: 12px 20px;
-  background: linear-gradient(135deg, #ff6f61, #d2691e);
-  color: white;
-  border: none;
+}
+
+.logout-btn {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  margin-top: 20px;
+  background: var(--button-bg);
+  color: #333;
+  text-align: center;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 16px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s, box-shadow 0.3s;
+  transition: background-color 0.3s;
 }
 
 .logout-btn:hover {
-  background-color: #6f4f28;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  background: var(--button-hover-bg);
 }
 
-/* Media Queries */
 @media screen and (max-width: 800px) {
   .container {
     flex-direction: column;
@@ -167,5 +172,19 @@ canvas {
   .right-section {
     min-width: 100%;
     margin-bottom: 20px;
+  }
+
+  .filter-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .search-box {
+    width: 80%;
+  }
+
+  .filter-select {
+    width: 80%;
+    margin-top: 10px;
   }
 }
