@@ -34,57 +34,6 @@
             Already have an account? <a href="#">Login</a>
         </div>
     </form>
-    <script>
-        const form = document.getElementById('registrationForm');
-        const successMessage = document.getElementById('successMessage');
-        const errorMessage = document.getElementById('errorMessage');
-        const submitButton = document.getElementById('submitButton');
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            successMessage.style.display = 'none';
-            errorMessage.style.display = 'none';
-            submitButton.classList.add('loading');
-
-            const username = document.getElementById('username').value;
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-
-            try {
-                const response = await fetch('http://localhost:3000/auth/register', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ name, username, email, password }),
-                });
-
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    if (errorData.message === 'Email is already in use') {
-                        throw new Error('This email is already registered. Please use another email.');
-                    }
-                    if (errorData.message === 'Username is already in use') {
-                        throw new Error('This username is already taken. Please choose another username.');
-                    }
-                    throw new Error('Failed to register');
-                }
-
-                const data = await response.json();
-                successMessage.textContent = 'Registration successful!';
-                successMessage.style.display = 'block';
-
-                setTimeout(() => {
-                    window.location.href = '/client/login.html';
-                }, 2000);
-            } catch (error) {
-                console.log(error);
-                errorMessage.textContent = error.message || 'There was an error. Please try again.';
-                errorMessage.style.display = 'block';
-            } finally {
-                submitButton.classList.remove('loading');
-            }
-        });
-    </script>
+    <script src="./dist/script/register.js"></script>
 </body>
 </html>
