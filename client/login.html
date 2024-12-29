@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Login</title>
     <link rel="stylesheet" href="./style/auth.css">
 </head>
 <body>
-    <form>
+    <form id="loginForm">
         <header>
             <h1>Login</h1>
         </header>
+        <div class="message success" id="successMessage">Logging in successful!</div>
+        <div class="message error" id="errorMessage">There was an error. Please try again.</div>
         <div class="form-control">
             <label for="email">Email</label>
             <input type="email" id="email" placeholder="Email" required />
@@ -19,10 +21,11 @@
             <label for="password">Password</label>
             <input type="password" id="password" placeholder="Password" required />
         </div>
-        <button type="submit">Register</button>
+        <button type="submit" id="submitButton">Login</button>
         <div class="alt-option">
-            New around here? <a href="./register.html">Register</a>
+            New user? <a href="./register.html">Register</a>
         </div>
     </form>
+    <script src="./dist/script/login.js"></script>
 </body>
 </html>
