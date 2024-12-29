@@ -1,7 +1,18 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  Request,
+  UseGuards,
+} from '@nestjs/common';
 import { ExpensesService } from './expenses.service';
+import { JwtAuthGuard } from '../auth/auth.guard';
 
 @Controller('expenses')
+@UseGuards(JwtAuthGuard)
 export class ExpensesController {
   constructor(private readonly expensesService: ExpensesService) {}
 
@@ -12,19 +23,22 @@ export class ExpensesController {
       title: string;
       amount: number;
       category: string;
-      userId: string;
     },
+    @Request() req,
   ) {
-    return this.expensesService.create(data);
+    const userId = req.user.userId;
+    return this.expensesService.create(data, userId);
   }
 
   @Get()
-  findAll() {
-    return this.expensesService.findAll();
+  findAll(@Request() req) {
+    const userId = req.user.userId;
+    return this.expensesService.findAll(userId);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.expensesService.remove(id);
+  remove(@Param('id') id: string, @Request() req) {
+    const userId = req.user.userId;
+    return this.expensesService.remove(id, userId);
   }
 }
