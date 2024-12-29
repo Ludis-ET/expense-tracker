@@ -137,6 +137,26 @@ canvas {
   background-color: #ff6f61;
 }
 
+/* Logout Button Styles */
+.logout-btn {
+  margin-top: 20px;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #ff6f61, #d2691e);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #6f4f28;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
 /* Media Queries */
 @media screen and (max-width: 800px) {
   .container {

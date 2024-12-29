@@ -17,11 +17,7 @@ const addExpenseBtn = document.getElementById(
 ) as HTMLButtonElement;
 const expenseList = document.getElementById("expenseList") as HTMLUListElement;
 const totalAmount = document.getElementById("totalAmount") as HTMLDivElement;
-const logoutBtn = document.createElement("button");
-
-logoutBtn.textContent = "Logout";
-logoutBtn.style.marginTop = "20px";
-document.body.appendChild(logoutBtn);
+const logoutBtn = document.getElementById("logoutBtn") as HTMLButtonElement;
 
 let expenses: {
   id: string;
@@ -102,7 +98,7 @@ function renderCategoryChart() {
 
 function renderDayChart() {
   const dailyData = expenses.reduce((data, expense) => {
-    const expenseDate = new Date(expense.date).toISOString().split("T")[0]; 
+    const expenseDate = new Date(expense.date).toISOString().split("T")[0];
     if (data[expenseDate]) {
       data[expenseDate] += expense.amount;
     } else {
@@ -191,7 +187,9 @@ logoutBtn.addEventListener("click", () => {
 addExpenseBtn.addEventListener("click", () => {
   const title = expenseNameInput.value.trim();
   const amount = parseFloat(expenseAmountInput.value.trim());
-  const category = prompt("Enter category:")?.trim() || "General";
+  const category = (
+    document.getElementById("expenseCategory") as HTMLSelectElement
+  ).value;
 
   if (title && !isNaN(amount) && amount > 0) {
     addExpense(title, amount, category);
