@@ -60,7 +60,7 @@ loginForm.addEventListener("submit", async (e: Event) => {
     loginSuccess.style.display = "block";
 
     setTimeout(() => {
-      window.location.href = "/client/index.html";
+      window.location.href = "/client";
     }, 2000);
   } catch (error) {
     console.log(error);
