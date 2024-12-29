@@ -1,15 +1,15 @@
-const registrationForm = document.getElementById("registrationForm") as HTMLFormElement;
-const registrationSuccess = document.getElementById("successMessage") as HTMLElement;
-const registrationError = document.getElementById("errorMessage") as HTMLElement;
-const registrationSubmit = document.getElementById(
+const form = document.getElementById("registrationForm") as HTMLFormElement;
+const successMessage = document.getElementById("successMessage") as HTMLElement;
+const errorMessage = document.getElementById("errorMessage") as HTMLElement;
+const submitButton = document.getElementById(
   "submitButton"
 ) as HTMLButtonElement;
 
-loginForm.addEventListener("submit", async (e: Event) => {
+form.addEventListener("submit", async (e: Event) => {
   e.preventDefault();
-  loginSuccess.style.display = "none";
-  loginError.style.display = "none";
-  loginSubmit.classList.add("loading");
+  successMessage.style.display = "none";
+  errorMessage.style.display = "none";
+  submitButton.classList.add("loading");
 
   const username = (document.getElementById("username") as HTMLInputElement)
     .value;
@@ -19,24 +19,24 @@ loginForm.addEventListener("submit", async (e: Event) => {
     .value;
 
   if (!name || !username || !email || !password) {
-    loginError.textContent = "All fields are required";
-    loginError.style.display = "block";
-    loginSubmit.classList.remove("loading");
+    errorMessage.textContent = "All fields are required";
+    errorMessage.style.display = "block";
+    submitButton.classList.remove("loading");
     return;
   }
 
   const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
   if (!emailPattern.test(email)) {
-    loginError.textContent = "Please enter a valid email address";
-    loginError.style.display = "block";
-    loginSubmit.classList.remove("loading");
+    errorMessage.textContent = "Please enter a valid email address";
+    errorMessage.style.display = "block";
+    submitButton.classList.remove("loading");
     return;
   }
 
   if (password.length < 6) {
-    loginError.textContent = "Password must be at least 6 characters long";
-    loginError.style.display = "block";
-    loginSubmit.classList.remove("loading");
+    errorMessage.textContent = "Password must be at least 6 characters long";
+    errorMessage.style.display = "block";
+    submitButton.classList.remove("loading");
     return;
   }
 
@@ -65,8 +65,8 @@ loginForm.addEventListener("submit", async (e: Event) => {
     }
 
     const data = await response.json();
-    loginSuccess.textContent = "Registration successful!";
-    loginSuccess.style.display = "block";
+    successMessage.textContent = "Registration successful!";
+    successMessage.style.display = "block";
 
     setTimeout(() => {
       window.location.href = "/client/login.html";
@@ -77,9 +77,9 @@ loginForm.addEventListener("submit", async (e: Event) => {
       error instanceof Error
         ? error.message
         : "There was an error. Please try again.";
-    loginError.textContent = errorMessageText;
-    loginError.style.display = "block";
+    errorMessage.textContent = errorMessageText;
+    errorMessage.style.display = "block";
   } finally {
-    loginSubmit.classList.remove("loading");
+    submitButton.classList.remove("loading");
   }
 });

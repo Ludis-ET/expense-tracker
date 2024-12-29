@@ -48,10 +48,8 @@ loginForm.addEventListener("submit", async (e: Event) => {
 
     if (!response.ok) {
       const errorData = await response.json();
-      if (errorData.message === "Invalid email or password") {
-        throw new Error("Invalid email or password");
-      }
-      throw new Error("An error occurred. Please try again.");
+      throw new Error(errorData.message);
+      
     }
 
     const data = await response.json();
